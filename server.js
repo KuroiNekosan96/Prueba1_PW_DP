@@ -25,8 +25,6 @@ let getInfo = async(pa1, pa2) => {
         console.log(`No se puede obtener el clima de: ${pais}`);
     }
 };
-
-//Express hbs engine
 hbs.registerPartials(__dirname + '/views/parciales')
 app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
@@ -37,31 +35,21 @@ let temp2
 getInfo("Quito", "Madrid").then(res => {
     temp1 = res.temp1;
     temp2 = res.temp2;
-
     console.log(res.temp, res.temp1);
 }).catch(err => console.log(err));
-
 //-------------------------------------------------------
-
-
 app.use(express.static(__dirname + '/public'));
-
-// Express HBS engine
 hbs.registerPartials(__dirname + '/views/parciales');
 app.set('view engine', 'hbs');
 
 app.get('/', function(req, res) {
-
-    //estamos usando plantilaaY
     res.render('home', {
         nombre: "DoRiVaL PicHaMba",
         pais1: "Quito",
-        // pais2: "Guayaquil",
         temperatura1: temp1,
-        // temperatura2: temp2
+
     });
 });
-
 app.get('/about', (req, res) => {
     res.render('about', {
         nombre: "DoRiVal",
